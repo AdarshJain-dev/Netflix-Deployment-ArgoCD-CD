@@ -28,26 +28,9 @@ metadata:
   labels:
     app: netflix-app
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
   - port: 80
     targetPort: 80
-    nodePort: 30007
   selector:
     app: netflix-app
-
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: node-exporter
-  namespace: webapps
-spec:
-  selector:
-      app: node-exporter
-  ports:
-  - name: node-exporter
-    protocol: TCP
-    port: 9100
-    targetPort: 9100
-  type: NodePort
